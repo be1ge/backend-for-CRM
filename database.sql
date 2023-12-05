@@ -68,7 +68,12 @@ create TABLE shift(
     instruction INTEGER,
     statement VARCHAR(255),
     day BOOLEAN,
-    done BOOLEAN,
+    done BOOLEAN
+);
+
+CREATE TABLE shift_workers (
+    id SERIAL PRIMARY KEY,
+    shift INTEGER,
     worker_id INTEGER,
     worker_instruction INTEGER,
     worker_bet INTEGER,
@@ -77,7 +82,8 @@ create TABLE shift(
     worker_lunch BOOLEAN,
     worker_summary INTEGER,
     worker_type VARCHAR(30),
+    FOREIGN KEY (shift) REFERENCES shift (id),
     FOREIGN KEY (worker_id) REFERENCES worker (id),
     FOREIGN KEY (worker_instruction) REFERENCES instruction (id),
-    FOREIGN KEY (worker_bet) REFERENCES bet (id),
+    FOREIGN KEY (worker_bet) REFERENCES bet (id)
 );
